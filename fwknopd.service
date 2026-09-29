@@ -1,0 +1,14 @@
+[Unit]
+Description=fwknop Single Packet Authorization daemon
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+PIDFile=/run/fwknop/fwknopd.pid
+RuntimeDirectory=fwknop
+ExecStart=/usr/bin/fwknopd
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
